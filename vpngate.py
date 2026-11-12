@@ -260,7 +260,7 @@ def parse_edge_hosts(raw: str) -> list[str]:
 
 def derive_nodes_url() -> str:
     """从 GITHUB_REPOSITORY 推导 nodes.txt 地址；本地运行回退占位。"""
-    explicit = os.environ.get("NODES_URL", "https://jshushu1990.github.io/gate/nodes.txt").strip()
+    NODES_URL = os.environ.get("NODES_URL", "https://jshushu1990.github.io/gate/nodes.txt").strip()
     if explicit:
         return explicit
     repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
