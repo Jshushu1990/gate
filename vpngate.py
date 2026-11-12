@@ -51,7 +51,7 @@ DEFAULT_VPNGATE_API = "http://www.vpngate.net/api/iphone/"
 DEFAULT_VPNGATE_MIRROR = (
     "https://raw.githubusercontent.com/fdciabdul/Vpngate-Scraper-API/main/json/data.json"
 )
-DEFAULT_OPTIMAL_API = "https://cf.090227.xyz/ct?ips=6&port=443,https://cf.090227.xyz/cu&port=443,https://cf.090227.xyz/cmcc?ips=8port=443"
+DEFAULT_OPTIMAL_API = "https://cf.090227.xyz/ct?ips=6&port=443,""https://cf.090227.xyz/cu&port=443,""https://cf.090227.xyz/cmcc?ips=8port=443"
 
 # 占位符检测：命中任意一个就认为用户还没配置
 PLACEHOLDER_MARKERS = ("你的", "YOUR_", "YOUR-", "example.com", "yourdomain")
@@ -260,7 +260,7 @@ def parse_edge_hosts(raw: str) -> list[str]:
 
 def derive_nodes_url() -> str:
     """从 GITHUB_REPOSITORY 推导 nodes.txt 地址；本地运行回退占位。"""
-    NODES_URL = os.environ.get("NODES_URL", "https://jshushu1990.github.io/gate/nodes.txt").strip()
+    explicit = os.environ.get("NODES_URL", "").strip()
     if explicit:
         return explicit
     repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
